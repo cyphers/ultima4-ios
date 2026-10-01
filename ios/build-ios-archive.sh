@@ -51,6 +51,20 @@ if ! data_ok "$U4_DATA"; then
   exit 1
 fi
 
+# SDL2 2.30.10 + our UIScene backport (ios/sdl2-uiscene.patch; required by the
+# iOS 27 SDK). The stamp carries the patch hash, so editing the patch
+# re-extracts SDL and forces every cached SDL build to rebuild.
+SDL_PATCH="$ZU4_SRC/ios/sdl2-uiscene.patch"
+SDL_STAMP="SDL2-${SDL_VER}/.uiscene-$(shasum "$SDL_PATCH" | cut -c1-12)"
+if [ ! -f "$SDL_STAMP" ]; then
+  [ -f SDL2.tar.gz ] || curl -L -o SDL2.tar.gz \
+    "https://github.com/libsdl-org/SDL/releases/download/release-${SDL_VER}/SDL2-${SDL_VER}.tar.gz"
+  rm -rf "SDL2-${SDL_VER}" sdl2-device sdl2-sim sdl2-build
+  tar xzf SDL2.tar.gz
+  patch -p1 -d "SDL2-${SDL_VER}" < "$SDL_PATCH"
+  touch "$SDL_STAMP"
+fi
+
 # 1. SDL2 static for the device (iphoneos arm64), built once and shared with
 # build-ios-device.sh.
 if [ ! -f "$WORK/sdl2-device/Release-iphoneos/libSDL2.a" ]; then

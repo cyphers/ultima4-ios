@@ -175,7 +175,10 @@ static void zu4_quiet_keyboard(void)
 {
 	// Defer so SDL has created/added its text field first.
 	dispatch_async(dispatch_get_main_queue(), ^{
-		for(UIWindow *w in [UIApplication sharedApplication].windows)
+		// UIApplication.windows is deprecated under the UIScene lifecycle;
+		// walk the windows of the scene that owns our overlay instead.
+		UIWindowScene *scene = g_root_view.window.windowScene;
+		for(UIWindow *w in scene.windows)
 			zu4_quiet_text_field(w);
 	});
 }
