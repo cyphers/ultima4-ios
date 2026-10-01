@@ -88,7 +88,7 @@ set_target_properties(zu4 PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING "1.0"
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/ios/Info.plist.in"
     XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"
-    XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "13.0"
+    XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "15.0"
     # Required for `xcodebuild archive` to produce an app archive (not a
     # generic one): install the app into the archive's Applications dir.
     XCODE_ATTRIBUTE_INSTALL_PATH "$(LOCAL_APPS_DIR)"

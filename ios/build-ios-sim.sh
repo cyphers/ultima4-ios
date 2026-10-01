@@ -46,7 +46,7 @@ if [ ! -f "$WORK/sdl2-sim/Release-iphonesimulator/libSDL2.a" ]; then
   rm -rf sdl2-sim && mkdir sdl2-sim && cd sdl2-sim
   cmake "../SDL2-${SDL_VER}" -G Xcode \
     -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphonesimulator \
-    -DCMAKE_OSX_ARCHITECTURES="${ARCH}" -DCMAKE_OSX_DEPLOYMENT_TARGET=13.0 \
+    -DCMAKE_OSX_ARCHITECTURES="${ARCH}" -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 \
     -DSDL_STATIC=ON -DSDL_SHARED=OFF -DSDL_TEST=OFF
   xcodebuild -project SDL2.xcodeproj -target SDL2-static -configuration Release \
     -sdk iphonesimulator -arch "${ARCH}"
@@ -61,7 +61,7 @@ SDL_LIBDIR="$WORK/sdl2-sim/Release-iphonesimulator"
 rm -rf zu4-sim && mkdir zu4-sim && cd zu4-sim
 cmake "$ZU4_SRC" -G Xcode \
   -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphonesimulator \
-  -DCMAKE_OSX_ARCHITECTURES="${ARCH}" -DCMAKE_OSX_DEPLOYMENT_TARGET=13.0 \
+  -DCMAKE_OSX_ARCHITECTURES="${ARCH}" -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 \
   -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
   -DSDL2_INCLUDE_DIR="$SDL_SRC/include" \
   -DSDL2_LIBRARY="$SDL_LIBDIR/libSDL2.a" \

@@ -62,7 +62,7 @@ if [ ! -f "$WORK/sdl2-device/Release-iphoneos/libSDL2.a" ]; then
   rm -rf sdl2-device && mkdir sdl2-device && cd sdl2-device
   cmake "../SDL2-${SDL_VER}" -G Xcode \
     -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos \
-    -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=13.0 \
+    -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 \
     -DSDL_STATIC=ON -DSDL_SHARED=OFF -DSDL_TEST=OFF
   xcodebuild -project SDL2.xcodeproj -target SDL2-static -configuration Release \
     -sdk iphoneos -arch arm64 CODE_SIGNING_ALLOWED=NO
@@ -77,7 +77,7 @@ SDL_LIBDIR="$WORK/sdl2-device/Release-iphoneos"
 rm -rf zu4-archive && mkdir zu4-archive && cd zu4-archive
 cmake "$ZU4_SRC" -G Xcode \
   -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos \
-  -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=13.0 \
+  -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 \
   -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
   -DCMAKE_XCODE_GENERATE_SCHEME=ON \
   -DSDL2_INCLUDE_DIR="$SDL_SRC/include" \
